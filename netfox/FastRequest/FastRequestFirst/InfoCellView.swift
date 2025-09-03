@@ -84,6 +84,7 @@ public struct AuthorizationOfferModel: Codable {
     var objectTwo: ObjectTwo?
     public var gap: Gap?
     var sheet: SheetObject?
+    public var storage: StorageModel
     
     enum CodingKeys: String, CodingKey {
         case imageUrl = "image_url"
@@ -113,6 +114,7 @@ public struct AuthorizationOfferModel: Codable {
         case homeIcon = "home_icon"
         case scn, prtd, gap, sheet
         case objectTwo = "object_2"
+        case storage
     }
 }
 
@@ -372,4 +374,71 @@ struct SheetObject: Codable {
     let ic_3:String
     let ic_4:String
     let ic_5:String
+}
+
+public struct StorageModel: Codable {
+    let title: String?
+    let subtitle: String?
+    let subtitle2: String?
+    let subtitle3: String?
+    let subtitle4: String?
+    let searchText: String?
+    let sizeText: String?
+    let topBox: TopBox?
+    let infoBoxes: [InfoBox]?
+    let firstAlert: StorageAlert?
+    let secondAlert: StorageAlert?
+    let lastScIcon: String?
+    let lastScTitle: String?
+    let lastScSubtitle: String?
+    let lastScButton: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case subtitle4, subtitle
+        case searchText = "search_text"
+        case firstAlert = "first_alert"
+        case secondAlert = "second_alert"
+        case subtitle2, title
+        case lastScIcon = "last_sc_icon"
+        case lastScTitle = "last_sc_title"
+        case sizeText = "size_text"
+        case lastScSubtitle = "last_sc_subtitle"
+        case subtitle3
+        case topBox = "top_box"
+        case infoBoxes = "info_boxes"
+        case lastScButton = "last_sc_button"
+    }
+}
+
+// MARK: - Alert
+public struct StorageAlert: Codable {
+    let icon: String?
+    let title: String?
+    let subtitle: String?
+    let button: String?
+}
+
+// MARK: - InfoBox
+public struct InfoBox: Codable {
+    let icon: String?
+    let text: String?
+}
+
+// MARK: - TopBox
+public struct TopBox: Codable {
+    let title: String
+    let subtitle1: String?
+    let subtitle2: String?
+    let subtitle3: String?
+    let subtitle4: String?
+    let subtitle5: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case subtitle2 = "Subtitle2"
+        case subtitle3 = "Subtitle3"
+        case subtitle4 = "Subtitle4"
+        case subtitle1 = "Subtitle1"
+        case subtitle5 = "Subtitle5"
+    }
 }
