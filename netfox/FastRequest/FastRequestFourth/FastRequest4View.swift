@@ -98,6 +98,7 @@ public struct FastRequest4View: View {
                         }
                     } header: {
                         Text(model?.objectTwo?.center.subtitle ?? "")
+                            .foregroundColor(.black)
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
@@ -146,6 +147,7 @@ struct BottomCustomView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(model?.objectTwo?.description.title ?? "")
                         .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.black)
                     Text(model?.objectTwo?.description.subtitle ?? "")
                         .font(.system(size: 12, weight: .regular))
                         .foregroundColor(Color(UIColor(red: 103/255, green: 103/255, blue: 103/255, alpha: 1)))

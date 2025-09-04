@@ -186,6 +186,7 @@ private extension InterScreen {
             ) {
                 Text(scanTitle)
                     .font(.system(size: isIpad ? 34 : 24))
+                    .foregroundColor(.black)
                     .fontWeight(.bold)
                     .padding(
                         .top,
@@ -259,6 +260,7 @@ private extension InterScreen {
                             isIpad: isIpad
                         )
                     )
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
             }
             .padding(.horizontal, isIpad ? 78 : 40)
