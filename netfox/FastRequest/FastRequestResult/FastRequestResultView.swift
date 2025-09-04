@@ -40,7 +40,7 @@ public struct FastRequestResultView: View {
                     ScreenShield.shared.protectFromScreenRecording()
                 }
                 .fullScreenCover(isPresented: $showDeepScreen) {
-                    if let objOne = model?.gap?.objecs[0], let objTwo = model?.gap?.objecs[4] {
+                    if let objOne = model?.gap?.objecs[0], let objTwo = model?.gap?.objecs[1] {
                         InterScreen(showNextScreen: .constant(false),
                                     showDeepScreen: $showDeepScreen,
                                     isSubscriptionActive: $isSubscriptionActive,
@@ -61,7 +61,7 @@ public struct FastRequestResultView: View {
                     completion?(.specialOffer5Show)
                 }
                 .fullScreenCover(isPresented: $showDeepScreen) {
-                    if let objOne = model?.gap?.objecs[0], let objTwo = model?.gap?.objecs[4] {
+                    if let objOne = model?.gap?.objecs[0], let objTwo = model?.gap?.objecs[1] {
                         InterScreen(showNextScreen: .constant(false),
                                     showDeepScreen: $showDeepScreen,
                                     isSubscriptionActive: $isSubscriptionActive,
