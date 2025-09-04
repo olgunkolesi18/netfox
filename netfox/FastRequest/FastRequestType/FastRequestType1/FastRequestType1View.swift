@@ -25,13 +25,17 @@ public struct FastRequestType1View: View {
     
     @State private var subtitle: String = ""
     @State private var subtitleIsGreen: Bool = false
+    @Binding var showNextScreen: Bool
+    @Binding var isFinalScreenShown: Bool
     
     private let model: AuthorizationOfferModel?
     private let completion: ((EventsTitles?) -> Void)
     
-    public init(model: AuthorizationOfferModel?, completion: @escaping ((EventsTitles?) -> Void)) {
+    public init(model: AuthorizationOfferModel?, showNextScreen: Binding<Bool>, isFinalScreenShown: Binding<Bool>, completion: @escaping ((EventsTitles?) -> Void)) {
         self.model = model
         self.completion = completion
+        self._showNextScreen = showNextScreen
+        self._isFinalScreenShown = isFinalScreenShown
         
         _subtitle = State(initialValue: model?.subtitle ?? "")
         setupDataSource()
@@ -131,8 +135,14 @@ public struct FastRequestType1View: View {
             if showDataLossAlert {
                 TriangularSecondAlert(model: model?.storage,
                                       isPresented: $showDataLossAlert) {
-                    secondAlertAction()
+//                    secondAlertAction()
+                    completion(nil)
                 }
+            }
+        }
+        .onChange(of: showNextScreen) { newValue in
+            if newValue {
+                secondAlertAction()
             }
         }
         .onAppear {
@@ -354,7 +364,7 @@ public struct FastRequestType1View: View {
     }
     
     private func openApp() {
-        print("open app")
+        isFinalScreenShown = true
     }
 }
 
