@@ -7,7 +7,7 @@ extension UIDevice {
     }
 }
 
-struct FastRequestType1View: View {
+public struct FastRequestType1View: View {
     
     private var dataSourceItems: [SampleMenuItem] = []
     private var dataSourceFinalItems: [SampleMenuItem] = []
@@ -29,7 +29,7 @@ struct FastRequestType1View: View {
     private let model: AuthorizationOfferModel?
     private let completion: ((EventsTitles?) -> Void)
     
-    init(model: AuthorizationOfferModel?, completion: @escaping ((EventsTitles?) -> Void)) {
+    public init(model: AuthorizationOfferModel?, completion: @escaping ((EventsTitles?) -> Void)) {
         self.model = model
         self.completion = completion
         
@@ -39,7 +39,7 @@ struct FastRequestType1View: View {
         getDeviceStorage()
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             FirstScreen()
                 .compositingGroup()
