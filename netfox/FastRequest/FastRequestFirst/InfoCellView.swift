@@ -182,7 +182,7 @@ public struct ScnModel: Codable {
 
 struct ObjectTwo: Codable {
     let center: Center
-    let dark_blue: DarkBlue
+    let dark_blue: DarkBlue?
     let description: Description
     
     struct Center: Codable {

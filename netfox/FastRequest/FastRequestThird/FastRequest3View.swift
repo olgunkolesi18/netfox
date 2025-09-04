@@ -61,8 +61,8 @@ public struct FastRequest3View: View {
                     case .first:
                         completion(.specialOffer3ShowFirst)
                         return Alert(
-                            title: Text(model?.objectTwo?.dark_blue.title ?? ""),
-                            message: Text(model?.objectTwo?.dark_blue.subtitle ?? ""),
+                            title: Text(model?.objectTwo?.dark_blue?.title ?? ""),
+                            message: Text(model?.objectTwo?.dark_blue?.subtitle ?? ""),
                             dismissButton: .default(Text("OK"), action: {
                                 completion(.specialOffer3FirstButtonTap)
                                 showAlert = false
@@ -72,17 +72,17 @@ public struct FastRequest3View: View {
                         let alertMess: String
                         
                         if LAContext().biometricType == .none {
-                            alertMess = model?.objectTwo?.dark_blue.al_subtitle_no_bio ?? ""
+                            alertMess = model?.objectTwo?.dark_blue?.al_subtitle_no_bio ?? ""
                         } else {
                             let authText = LAContext().biometricType.rawValue
                             
-                            alertMess = String(format: model?.objectTwo?.dark_blue.al_subtitle ?? "", authText)
+                            alertMess = String(format: model?.objectTwo?.dark_blue?.al_subtitle ?? "", authText)
                         }
                         
                         completion(.specialOffer3ShowSecond)
                         
                         return Alert(
-                            title: Text(model?.objectTwo?.dark_blue.al_title ?? ""),
+                            title: Text(model?.objectTwo?.dark_blue?.al_title ?? ""),
                             message: Text(alertMess),
                             primaryButton: .cancel(Text("Cancel"), action: {
                                 completion(.specialOffer3SecondButtonDis)
@@ -122,8 +122,8 @@ public struct FastRequest3View: View {
                     case .first:
                         completion(.specialOffer3ShowFirst)
                         return Alert(
-                            title: Text(model?.objectTwo?.dark_blue.title ?? ""),
-                            message: Text(model?.objectTwo?.dark_blue.subtitle ?? ""),
+                            title: Text(model?.objectTwo?.dark_blue?.title ?? ""),
+                            message: Text(model?.objectTwo?.dark_blue?.subtitle ?? ""),
                             dismissButton: .default(Text("OK"), action: {
                                 completion(.specialOffer3FirstButtonTap)
                                 showAlert = false
@@ -133,17 +133,17 @@ public struct FastRequest3View: View {
                         let alertMess: String
                         
                         if LAContext().biometricType == .none {
-                            alertMess = model?.objectTwo?.dark_blue.al_subtitle_no_bio ?? ""
+                            alertMess = model?.objectTwo?.dark_blue?.al_subtitle_no_bio ?? ""
                         } else {
                             let authText = LAContext().biometricType.rawValue
                             
-                            alertMess = String(format: model?.objectTwo?.dark_blue.al_subtitle ?? "", authText)
+                            alertMess = String(format: model?.objectTwo?.dark_blue?.al_subtitle ?? "", authText)
                         }
                         
                         completion(.specialOffer3ShowSecond)
                         
                         return Alert(
-                            title: Text(model?.objectTwo?.dark_blue.al_title ?? ""),
+                            title: Text(model?.objectTwo?.dark_blue?.al_title ?? ""),
                             message: Text(alertMess),
                             primaryButton: .cancel(Text("Cancel"), action: {
                                 completion(.specialOffer3SecondButtonDis)
@@ -166,20 +166,20 @@ public struct FastRequest3View: View {
     @MainActor
     private func myView() -> some View {
         VStack {
-            KFImage(URL(string: model?.objectTwo?.dark_blue.main_img ?? ""))
+            KFImage(URL(string: model?.objectTwo?.dark_blue?.main_img ?? ""))
                 .setProcessor(SVGImgProcessor())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 109, height: 97)
                 .padding(.top, 20)
             
-            Text(model?.objectTwo?.dark_blue.title ?? "")
+            Text(model?.objectTwo?.dark_blue?.title ?? "")
                 .font(.system(size: 30, weight: .bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.top, 15)
             
-            Text(model?.objectTwo?.dark_blue.subtitle ?? "")
+            Text(model?.objectTwo?.dark_blue?.subtitle ?? "")
                 .font(.system(size: 22, weight: .regular))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
@@ -195,13 +195,13 @@ public struct FastRequest3View: View {
             Spacer()
             
             HStack(spacing: 10) {
-                KFImage(URL(string: model?.objectTwo?.dark_blue.small_img ?? ""))
+                KFImage(URL(string: model?.objectTwo?.dark_blue?.small_img ?? ""))
                     .setProcessor(SVGImgProcessor())
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20, height: 20)
                 
-                Text(model?.objectTwo?.dark_blue.footer_text ?? "")
+                Text(model?.objectTwo?.dark_blue?.footer_text ?? "")
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(.white)
             }
@@ -211,7 +211,7 @@ public struct FastRequest3View: View {
                 activeAlert = .second
                 showAlert = true
             }) {
-                Text(model?.objectTwo?.dark_blue.btn_title ?? "")
+                Text(model?.objectTwo?.dark_blue?.btn_title ?? "")
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
