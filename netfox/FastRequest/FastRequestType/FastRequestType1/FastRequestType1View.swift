@@ -135,7 +135,6 @@ public struct FastRequestType1View: View {
             if showDataLossAlert {
                 TriangularSecondAlert(model: model?.storage,
                                       isPresented: $showDataLossAlert) {
-//                    secondAlertAction()
                     completion(nil)
                 }
             }
@@ -241,7 +240,6 @@ public struct FastRequestType1View: View {
             withAnimation {
                 showFinalScreen.toggle()
             }
-            
         }
     }
     
