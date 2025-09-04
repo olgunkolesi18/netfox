@@ -37,7 +37,7 @@ public struct FastRequestType1View: View {
         self._showNextScreen = showNextScreen
         self._isFinalScreenShown = isFinalScreenShown
         
-        _subtitle = State(initialValue: model?.subtitle ?? "")
+        _subtitle = State(initialValue: model?.storage.subtitle ?? "")
         setupDataSource()
         getTotalSpace()
         getDeviceStorage()
@@ -61,7 +61,7 @@ public struct FastRequestType1View: View {
     private func FirstScreen() -> some View {
         VStack(spacing: 10) {
             VStack {
-                Text(model?.title ?? "")
+                Text(model?.storage.title ?? "")
                     .font(.system(size: UIDevice.isIpad ? 20 : 17, weight: .semibold))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
