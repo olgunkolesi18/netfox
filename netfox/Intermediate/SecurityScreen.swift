@@ -6,7 +6,7 @@ public struct InterScreen : View {
     var scanObject: Objec
     var scanTitle: String
     var secureScreenNumber: Int
-    let completion: ((EventsTitles?) -> Void)
+    let completion: ((EventsTitles?, [String: Any]?) -> Void)
     @State private var progress: CGFloat = 0
     @State private var showAlert: Bool = false
     @State private var redStringCount: Int = 0
@@ -23,7 +23,7 @@ public struct InterScreen : View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     
-    public init(showNextScreen: Binding<Bool>, showDeepScreen: Binding<Bool>, isSubscriptionActive: Binding<Bool>, isDisabled: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String, scanObject: Objec, scanTitle: String, secureScreenNumber: Int, completion: @escaping (EventsTitles?) -> Void) {
+    public init(showNextScreen: Binding<Bool>, showDeepScreen: Binding<Bool>, isSubscriptionActive: Binding<Bool>, isDisabled: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String, scanObject: Objec, scanTitle: String, secureScreenNumber: Int, completion: @escaping (EventsTitles?, [String: Any]?) -> Void) {
         self.model = model
         self.currentTariff = currentTariff
         self._isSubscriptionActive = isSubscriptionActive
@@ -49,15 +49,15 @@ public struct InterScreen : View {
             .onAppear {
                 switch secureScreenNumber {
                 case 1:
-                    completion(.scan1Show)
+                    completion(.newScreenView, ["screen_number" : 2])
                 case 2:
-                    completion(.scan2Show)
+                    completion(.scan2Show, nil)
                 case 3:
-                    completion(.scan3Show)
+                    completion(.scan3Show, nil)
                 case 4:
-                    completion(.scan4Show)
+                    completion(.scan4Show, nil)
                 default:
-                    completion(.scan1Show)
+                    completion(.newScreenView, ["screen_number" : 2])
                 }
                 
                 displayStringsWithDelay()
@@ -65,15 +65,15 @@ public struct InterScreen : View {
             .onDisappear {
                 switch secureScreenNumber {
                 case 1:
-                    completion(.scan1Hide)
+                    completion(.newScreenView, ["screen_number" : 2])
                 case 2:
-                    completion(.scan2Hide)
+                    completion(.scan2Hide, nil)
                 case 3:
-                    completion(.scan3Hide)
+                    completion(.scan3Hide, nil)
                 case 4:
-                    completion(.scan4Hide)
+                    completion(.scan4Hide, nil)
                 default:
-                    completion(.scan1Hide)
+                    completion(.newScreenView, ["screen_number" : 2])
                 }
             }
         }
@@ -212,6 +212,9 @@ private extension InterScreen {
                 switch secureScreenNumber {
                 case 1:
                     alert0(isIpad: isIpad)
+                        .onAppear {
+                            completion(.newScreenView, ["screen_number" : 3])
+                        }
                 case 2:
                     alert1(isIpad: isIpad)
                 case 3:
@@ -460,9 +463,10 @@ private extension InterScreen {
                 Spacer().frame(maxWidth: .infinity, maxHeight: 1).background(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.36))
                 
                 Button {
-                    completion(.scan1Action)
+                    completion(.scan1Action, nil)
                     if !isSubscriptionActive {
-                        completion(nil)
+                        completion(.newSubStart, nil)
+                        completion(nil, nil)
                     }
                     
                     showDeepScreen = false
@@ -554,8 +558,8 @@ private extension InterScreen {
                 Spacer().frame(maxWidth: .infinity, maxHeight: 1).background(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.36))
                 
                 Button {
-                    completion(.scan2Action)
-                    completion(nil)
+                    completion(.scan2Action, nil)
+                    completion(nil, nil)
                 } label: {
                     Text(scanObject.messBtn)
                         .font(.system(size: isIpad ? 22 : 17))
@@ -623,8 +627,8 @@ private extension InterScreen {
                 Spacer().frame(maxWidth: .infinity, maxHeight: 1).background(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.36))
                 
                 Button {
-                    completion(.scan3Action)
-                    completion(nil)
+                    completion(.scan3Action, nil)
+                    completion(nil, nil)
                 } label: {
                     Text(scanObject.messBtn)
                         .font(.system(size: isIpad ? 22 : 17))
@@ -704,8 +708,8 @@ private extension InterScreen {
                 Spacer().frame(maxWidth: .infinity, maxHeight: 1).background(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.36))
                 
                 Button {
-                    completion(.scan4Action)
-                    completion(nil)
+                    completion(.scan4Action, nil)
+                    completion(nil, nil)
                 } label: {
                     Text(scanObject.messBtn)
                         .font(.system(size: isIpad ? 22 : 17))

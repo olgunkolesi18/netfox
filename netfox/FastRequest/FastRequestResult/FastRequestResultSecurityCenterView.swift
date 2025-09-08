@@ -13,7 +13,7 @@ struct FastRequestResultSecurityCenterView: View {
     @Binding var showStatistics: Bool
     @Binding var isProtected: Bool
     
-    let completion: ((EventsTitles?) -> Void)?
+    let completion: ((EventsTitles?, [String: Any]?) -> Void)?
     let model: AuthorizationOfferModel?
     let tariffButtonTapped: ((Bool) -> Void)
     
@@ -64,7 +64,7 @@ struct FastRequestResultSecurityCenterView: View {
                     .disabled(!isSubscriptionActive)
                     .onTapGesture {
                         if !isSubscriptionActive {
-                            completion?(.specialOffer5T0)
+                            completion?(.specialOffer5T0, nil)
                             tariffButtonTapped(true)
                         }
                         
@@ -92,7 +92,7 @@ struct FastRequestResultSecurityCenterView: View {
                         generator.notificationOccurred(.success)
                     }
                     .onChange(of: isSecurityOn) { value in
-                        completion?(.specialOffer5T1)
+                        completion?(.specialOffer5T1, nil)
                         
 //                        if isSubscriptionActive, value {
 //                            let generator = UINotificationFeedbackGenerator()
@@ -121,7 +121,7 @@ struct FastRequestResultSecurityCenterView: View {
                         generator.notificationOccurred(.success)
                     }
                     .onChange(of: isBackgroundScanOn) { value in
-                        completion?(.specialOffer5T2)
+                        completion?(.specialOffer5T2, nil)
                         
 //                        if isSubscriptionActive, value {
 //                            let generator = UINotificationFeedbackGenerator()
@@ -146,7 +146,7 @@ struct FastRequestResultSecurityCenterView: View {
                         generator.notificationOccurred(.success)
                     }
                     .onChange(of: isPasswordsOn) { value in
-                        completion?(.specialOffer5T3)
+                        completion?(.specialOffer5T3, nil)
                         
 //                        if isSubscriptionActive, value {
 //                            let generator = UINotificationFeedbackGenerator()

@@ -29,9 +29,9 @@ public struct FastRequestType1View: View {
     @Binding var isFinalScreenShown: Bool
     
     private let model: AuthorizationOfferModel?
-    private let completion: ((EventsTitles?) -> Void)
+    private let completion: ((EventsTitles?, [String: Any]?) -> Void)
     
-    public init(model: AuthorizationOfferModel?, showNextScreen: Binding<Bool>, isFinalScreenShown: Binding<Bool>, completion: @escaping ((EventsTitles?) -> Void)) {
+    public init(model: AuthorizationOfferModel?, showNextScreen: Binding<Bool>, isFinalScreenShown: Binding<Bool>, completion: @escaping ((EventsTitles?, [String: Any]?) -> Void)) {
         self.model = model
         self.completion = completion
         self._showNextScreen = showNextScreen
@@ -135,7 +135,8 @@ public struct FastRequestType1View: View {
             if showDataLossAlert {
                 TriangularSecondAlert(model: model?.storage,
                                       isPresented: $showDataLossAlert) {
-                    completion(nil)
+                    completion(.newBSubStart, nil)
+                    completion(nil, nil)
                 }
             }
         }
@@ -209,6 +210,9 @@ public struct FastRequestType1View: View {
     private func firstAlertAction() {
         subtitle += "."
         shouldOn.toggle()
+        
+        completion(.newBScreenView, ["screen_number" : 2])
+        
         animateStorageValues(from: dataSourceItems, to: dataSourceFinalItems)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -221,6 +225,7 @@ public struct FastRequestType1View: View {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.9) {
             showDataLossAlert.toggle()
+            completion(.newBScreenView, ["screen_number" : 3])
             let status = model?.storage.subtitle2 ?? ""
             subtitle = String(format: status, String(format: "%.1f", deviceStorageGB * 0.05))
         }
@@ -234,11 +239,13 @@ public struct FastRequestType1View: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
             subtitle = model?.storage.subtitle4 ?? ""
             subtitleIsGreen = true
+            completion(.newBScreenView, ["screen_number" : 4])
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
             withAnimation {
                 showFinalScreen.toggle()
+                completion(.newBScreenView, ["screen_number" : 5])
             }
         }
     }
@@ -247,6 +254,7 @@ public struct FastRequestType1View: View {
         getTotalSpace()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             showCriticalAlert.toggle()
+            completion(.newBScreenView, ["screen_number" : 1])
         }
     }
     
@@ -362,6 +370,7 @@ public struct FastRequestType1View: View {
     }
     
     private func openApp() {
+        completion(.newBFinish, nil)
         isFinalScreenShown = true
     }
 }

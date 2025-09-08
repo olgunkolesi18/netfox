@@ -18,9 +18,9 @@ public struct FastRequestResultView: View {
     
     private let model: AuthorizationOfferModel?
     private let currentTariff: String?
-    private let completion: ((EventsTitles?) -> Void)?
+    private let completion: ((EventsTitles?, [String: Any]?) -> Void)?
     
-    public init(isDisabled: Binding<Bool>, isSubscriptionActive: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String?, completion: ((EventsTitles?) -> Void)?) {
+    public init(isDisabled: Binding<Bool>, isSubscriptionActive: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String?, completion: ((EventsTitles?, [String: Any]?) -> Void)?) {
         self._isSubscriptionActive = isSubscriptionActive
         self.model = model
         self.currentTariff = currentTariff
@@ -36,7 +36,7 @@ public struct FastRequestResultView: View {
                 .protectScreenshot()
                 .ignoresSafeArea(.all)
                 .onAppear {
-                    completion?(.specialOffer5Show)
+                    completion?(.specialOffer5Show, nil)
                     ScreenShield.shared.protectFromScreenRecording()
                 }
                 .fullScreenCover(isPresented: $showDeepScreen) {
@@ -58,7 +58,7 @@ public struct FastRequestResultView: View {
                 .background(.white)
                 .navigationBarHidden(true)
                 .onAppear {
-                    completion?(.specialOffer5Show)
+                    completion?(.specialOffer5Show, nil)
                 }
                 .fullScreenCover(isPresented: $showDeepScreen) {
                     if let objOne = model?.gap?.objecs[0], let objTwo = model?.gap?.objecs[1] {
@@ -149,7 +149,7 @@ public struct FastRequestResultView: View {
                     ) { isTariif in
                         if isTariif {
 //                            showingSheet = true
-                            completion?(nil)
+                            completion?(nil, nil)
                         } else {
                             showSheetView = true
                         }

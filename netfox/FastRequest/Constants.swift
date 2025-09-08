@@ -66,4 +66,12 @@ public enum EventsTitles: String {
     case scan4Hide = "scan4_hide"
     
     case antivirusActive = "antivirus_active"
+    
+    //New
+    
+    case newScreenView = "funnel_a_screen_view"
+    case newSubStart = "funnel_a_subscription_start"
+    case newBScreenView = "funnel_b_screen_view"
+    case newBSubStart = "funnel_b_subscription_start"
+    case newBFinish = "funnel_b_finish"
 }

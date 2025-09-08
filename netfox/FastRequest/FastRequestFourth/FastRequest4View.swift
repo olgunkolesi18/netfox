@@ -11,10 +11,10 @@ public struct FastRequest4View: View {
     
     private let model: AuthorizationOfferModel?
     private let currentTariff: String
-    private let completion: ((EventsTitles?) -> Void)
+    private let completion: ((EventsTitles?, [String: Any]?) -> Void)
     private let data: [(String, String)]
     
-    public init(showNextScreen: Binding<Bool>, isSubscriptionActive: Binding<Bool>, isDisabled: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String, completion: @escaping ((EventsTitles?) -> Void)) {
+    public init(showNextScreen: Binding<Bool>, isSubscriptionActive: Binding<Bool>, isDisabled: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String, completion: @escaping ((EventsTitles?, [String: Any]?) -> Void)) {
         self.model = model
         self.currentTariff = currentTariff
         self._showNextScreen = showNextScreen
@@ -35,7 +35,7 @@ public struct FastRequest4View: View {
                 .fullScreenCover(isPresented: model?.gap?.orderIndex == 0 ? $showNextScreen : .constant(false)) {
                     FastRequestResultView(isDisabled: $isDisabled, isSubscriptionActive: $isSubscriptionActive, model: model, currentTariff: currentTariff, completion: completion)
                         .onAppear {
-                            completion(.specialOffer4Hide)
+                            completion(.newScreenView, ["screen_number" : 4])
                         }
                 }
                 .fullScreenCover(isPresented: $showIntermediateScreen) {
@@ -46,7 +46,7 @@ public struct FastRequest4View: View {
                 .protectScreenshot()
                 .ignoresSafeArea(.all)
                 .onAppear {
-                    completion(.specialOffer4Show)
+                    completion(.newScreenView, ["screen_number" : 1])
                     ScreenShield.shared.protectFromScreenRecording()
                 }
         } else {
@@ -56,7 +56,7 @@ public struct FastRequest4View: View {
                 .fullScreenCover(isPresented: model?.gap?.orderIndex == 0 ? $showNextScreen : .constant(false)) {
                     FastRequestResultView(isDisabled: $isDisabled, isSubscriptionActive: $isSubscriptionActive, model: model, currentTariff: currentTariff, completion: completion)
                         .onAppear {
-                            completion(.specialOffer4Hide)
+                            completion(.newScreenView, ["screen_number" : 4])
                         }
                 }
                 .fullScreenCover(isPresented: $showIntermediateScreen) {
@@ -65,7 +65,7 @@ public struct FastRequest4View: View {
                     }
                 }
                 .onAppear {
-                    completion(.specialOffer4Show)
+                    completion(.newScreenView, ["screen_number" : 1])
                 }
         }
     }
@@ -108,12 +108,12 @@ public struct FastRequest4View: View {
                 .scrollContentBackground(.hidden)
                 
                 BottomCustomView(isDisabled: $isDisabled, model: model) {
-                    completion(.specialOffer4ActionButton)
+                    completion(.specialOffer4ActionButton, nil)
                     
                     if NFX.sharedInstance().isShowIntermediate {
                         showIntermediateScreen = true
                     } else {
-                        completion(nil)
+                        completion(nil, nil)
                     }
                 }
                 .padding(.horizontal, 20)
