@@ -148,9 +148,7 @@ public struct FastRequestType1View: View {
             }
         }
         .onChange(of: showAlertAgain) { newValue in
-            if newValue {
                 showDataLossAlert = true
-            }
         }
         .onAppear {
             animatedItems = dataSourceItems
