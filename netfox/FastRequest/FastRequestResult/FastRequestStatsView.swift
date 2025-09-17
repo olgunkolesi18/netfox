@@ -43,7 +43,7 @@ struct StatisticsPopupView: View {
                         .foregroundColor(.black)
                     
                     Text(subtitle)
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.system(size: 13, weight: .regular))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 16)
