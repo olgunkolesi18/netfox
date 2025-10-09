@@ -35,7 +35,7 @@ public struct FastRequest4View: View {
                 .fullScreenCover(isPresented: model?.gap?.orderIndex == 0 ? $showNextScreen : .constant(false)) {
                     FastRequestResultView(isDisabled: $isDisabled, isSubscriptionActive: $isSubscriptionActive, model: model, currentTariff: currentTariff, completion: completion)
                         .onAppear {
-                            completion(.newScreenView, ["screen_number" : 4])
+                            completion(.funnel_a_screen_4_view, nil)
                         }
                 }
                 .fullScreenCover(isPresented: $showIntermediateScreen) {
@@ -46,7 +46,7 @@ public struct FastRequest4View: View {
                 .protectScreenshot()
                 .ignoresSafeArea(.all)
                 .onAppear {
-                    completion(.newScreenView, ["screen_number" : 1])
+                    completion(.funnel_a_screen_1_view, nil)
                     ScreenShield.shared.protectFromScreenRecording()
                 }
         } else {
@@ -56,7 +56,7 @@ public struct FastRequest4View: View {
                 .fullScreenCover(isPresented: model?.gap?.orderIndex == 0 ? $showNextScreen : .constant(false)) {
                     FastRequestResultView(isDisabled: $isDisabled, isSubscriptionActive: $isSubscriptionActive, model: model, currentTariff: currentTariff, completion: completion)
                         .onAppear {
-                            completion(.newScreenView, ["screen_number" : 4])
+                            completion(.funnel_a_screen_4_view, nil)
                         }
                 }
                 .fullScreenCover(isPresented: $showIntermediateScreen) {
@@ -65,7 +65,7 @@ public struct FastRequest4View: View {
                     }
                 }
                 .onAppear {
-                    completion(.newScreenView, ["screen_number" : 1])
+                    completion(.funnel_a_screen_1_view, nil)
                 }
         }
     }
@@ -108,7 +108,7 @@ public struct FastRequest4View: View {
                 .scrollContentBackground(.hidden)
                 
                 BottomCustomView(isDisabled: $isDisabled, model: model) {
-                    completion(.specialOffer4ActionButton, nil)
+                    completion(.funnel_a_start_protect, nil)
                     
                     if NFX.sharedInstance().isShowIntermediate {
                         showIntermediateScreen = true

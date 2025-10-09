@@ -49,7 +49,7 @@ public struct InterScreen : View {
             .onAppear {
                 switch secureScreenNumber {
                 case 1:
-                    completion(.newScreenView, ["screen_number" : 2])
+                    completion(.funnel_a_screen_2_view, nil)
                 case 2:
                     completion(.scan2Show, nil)
                 case 3:
@@ -57,7 +57,7 @@ public struct InterScreen : View {
                 case 4:
                     completion(.scan4Show, nil)
                 default:
-                    completion(.newScreenView, ["screen_number" : 2])
+                    completion(.funnel_a_screen_2_view, nil)
                 }
                 
                 displayStringsWithDelay()
@@ -65,7 +65,7 @@ public struct InterScreen : View {
             .onDisappear {
                 switch secureScreenNumber {
                 case 1:
-                    completion(.newScreenView, ["screen_number" : 2])
+                    completion(.funnel_a_screen_2_view, nil)
                 case 2:
                     completion(.scan2Hide, nil)
                 case 3:
@@ -73,7 +73,7 @@ public struct InterScreen : View {
                 case 4:
                     completion(.scan4Hide, nil)
                 default:
-                    completion(.newScreenView, ["screen_number" : 2])
+                    completion(.funnel_a_screen_2_view, nil)
                 }
             }
         }
@@ -213,7 +213,7 @@ private extension InterScreen {
                 case 1:
                     alert0(isIpad: isIpad)
                         .onAppear {
-                            completion(.newScreenView, ["screen_number" : 3])
+                            completion(.funnel_a_screen_3_view, nil)
                         }
                 case 2:
                     alert1(isIpad: isIpad)
@@ -465,7 +465,8 @@ private extension InterScreen {
                 Button {
                     completion(.scan1Action, nil)
                     if !isSubscriptionActive {
-                        completion(.newSubStart, nil)
+                        completion(.funnel_a_subscription_start, nil)
+                        
                         completion(nil, nil)
                     }
                     

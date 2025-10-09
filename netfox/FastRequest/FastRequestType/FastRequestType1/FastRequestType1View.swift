@@ -137,7 +137,7 @@ public struct FastRequestType1View: View {
             if showDataLossAlert {
                 TriangularSecondAlert(model: model?.storage,
                                       isPresented: $showDataLossAlert) {
-                    completion(.newBSubStart, nil)
+                    completion(.funnel_b_subscription_start, nil)
                     completion(nil, nil)
                 }
             }
@@ -216,7 +216,7 @@ public struct FastRequestType1View: View {
         subtitle += "."
         shouldOn.toggle()
         
-        completion(.newBScreenView, ["screen_number" : 2])
+        completion(.funnel_b_screen_2_view, nil)
         
         animateStorageValues(from: dataSourceItems, to: dataSourceFinalItems)
         
@@ -230,7 +230,7 @@ public struct FastRequestType1View: View {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.9) {
             showDataLossAlert.toggle()
-            completion(.newBScreenView, ["screen_number" : 3])
+            completion(.funnel_b_screen_3_view, nil)
             let status = model?.storage.subtitle2 ?? ""
             subtitle = String(format: status, String(format: "%.1f", deviceStorageGB * 0.05))
         }
@@ -244,13 +244,13 @@ public struct FastRequestType1View: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
             subtitle = model?.storage.subtitle4 ?? ""
             subtitleIsGreen = true
-            completion(.newBScreenView, ["screen_number" : 4])
+            completion(.funnel_b_screen_4_view, nil)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
             withAnimation {
                 showFinalScreen.toggle()
-                completion(.newBScreenView, ["screen_number" : 5])
+                completion(.funnel_b_screen_5_view, nil)
             }
         }
     }
@@ -259,7 +259,7 @@ public struct FastRequestType1View: View {
         getTotalSpace()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             showCriticalAlert.toggle()
-            completion(.newBScreenView, ["screen_number" : 1])
+            completion(.funnel_b_screen_1_view, nil)
         }
     }
     
@@ -375,7 +375,7 @@ public struct FastRequestType1View: View {
     }
     
     private func openApp() {
-        completion(.newBFinish, nil)
+        completion(.funnel_b_finish, nil)
         isFinalScreenShown = true
     }
 }
