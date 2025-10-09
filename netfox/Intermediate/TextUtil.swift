@@ -1,5 +1,5 @@
 import Foundation
-import SwiftUICore
+import SwiftUI
 
 struct TextUtil {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
