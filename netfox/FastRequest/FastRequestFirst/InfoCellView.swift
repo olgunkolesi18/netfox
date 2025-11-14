@@ -86,6 +86,12 @@ public struct AuthorizationOfferModel: Codable {
     var sheet: SheetObject?
     public var storage: StorageModel
     
+    public var storage1Scr: Storage1Scr
+    public var storage2Scr: Storage2Scr
+    public var storage3Scr: Storage3Scr
+    public var storage4Scr: Storage4Scr
+    public var storage5Scr: Storage5Scr
+    
     enum CodingKeys: String, CodingKey {
         case imageUrl = "image_url"
         case title
@@ -115,6 +121,11 @@ public struct AuthorizationOfferModel: Codable {
         case scn, prtd, gap, sheet
         case objectTwo = "object_2"
         case storage
+        case storage1Scr = "storage1_scr"
+        case storage2Scr = "storage2_scr"
+        case storage3Scr = "storage3_scr"
+        case storage4Scr = "storage4_scr"
+        case storage5Scr = "storage5_scr"
     }
 }
 
@@ -440,5 +451,143 @@ public struct TopBox: Codable {
         case subtitle4 = "Subtitle4"
         case subtitle1 = "Subtitle1"
         case subtitle5 = "Subtitle5"
+    }
+}
+
+//New
+
+public struct Storage1Scr: Codable {
+    let title: String?
+    let topBox: Storage1ScrTopBox
+    let subtitle: String?
+    let sizeText: String?
+    let firstAlert: FirstAlert
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case topBox = "top_box"
+        case subtitle
+        case sizeText = "size_text"
+        case firstAlert = "first_alert"
+    }
+}
+
+public struct FirstAlert: Codable {
+    let icon: String?
+    let title: String?
+    let subtitle: String?
+    let button: String?
+}
+
+public struct Storage1ScrTopBox: Codable {
+    let title: String?
+    let subtitle1: String?
+    let subtitle2: String?
+    let subtitle3: String?
+    let subtitle4: String?
+    let subtitle5: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case subtitle1 = "Subtitle1"
+        case subtitle2 = "Subtitle2"
+        case subtitle3 = "Subtitle3"
+        case subtitle4 = "Subtitle4"
+        case subtitle5 = "Subtitle5"
+    }
+}
+
+public struct Storage2Scr: Codable {
+    let title: String?
+    let strigs: [Storage2ScrStrig]
+}
+
+public struct Storage2ScrStrig: Codable, Equatable {
+    let firstName: String?
+    let secondName: String?
+}
+
+public struct Storage3Scr: Codable {
+    let title: String?
+    let subtitle: String?
+    let topBox: Storage3ScrTopBox
+    let lowBox: Storage3ScrLowBox
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case subtitle
+        case topBox = "top_box"
+        case lowBox = "low_box"
+    }
+}
+
+public struct Storage3ScrTopBox: Codable {
+    let title1: String?
+    let title2: String?
+    let title3: String?
+    let title4: String?
+    let subtitle1: String?
+    let subtitle2: String?
+    let subtitle3: String?
+    let subtitle4: String?
+}
+
+public struct Storage3ScrLowBox: Codable {
+    let title: String?
+    let subtitle: String?
+    let button: String?
+    let items: [String?]
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case subtitle
+        case button
+        case items
+    }
+}
+
+public struct Storage4Scr: Codable {
+    let title: String?
+    let strigs: [Storage4ScrStrig]
+}
+
+public struct Storage4ScrStrig: Codable, Equatable {
+    let name: String?
+    let color: String?
+}
+
+public struct Storage5Scr: Codable {
+    let lastScIcon: String?
+    let lastScTitle: String?
+    let lastScBoxImg1: String?
+    let lastScBoxImg2: String?
+    let lastScBoxImg3: String?
+    let lastScBoxTitle1: String?
+    let lastScBoxTitle2: String?
+    let lastScBoxTitle3: String?
+    let lastScBoxText1: String?
+    let lastScBoxTextGreen1: String?
+    let lastScBoxText2: String?
+    let lastScBoxTextGreen2: String?
+    let lastScBoxText3: String?
+    let lastScBoxTextGreen3: String?
+    let lastScButton: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case lastScIcon = "last_sc_icon"
+        case lastScTitle = "last_sc_title"
+        case lastScBoxImg1 = "last_sc_box_img1"
+        case lastScBoxImg2 = "last_sc_box_img2"
+        case lastScBoxImg3 = "last_sc_box_img3"
+        case lastScBoxTitle1 = "last_sc_box_title1"
+        case lastScBoxTitle2 = "last_sc_box_title2"
+        case lastScBoxTitle3 = "last_sc_box_title3"
+        case lastScBoxText1 = "last_sc_box_text1"
+        case lastScBoxTextGreen1 = "last_sc_box_text_green1"
+        case lastScBoxText2 = "last_sc_box_text2"
+        case lastScBoxTextGreen2 = "last_sc_box_text_green2"
+        case lastScBoxText3 = "last_sc_box_text3"
+        case lastScBoxTextGreen3 = "last_sc_box_text_green3"
+        case lastScButton = "last_sc_button"
     }
 }
