@@ -1,7 +1,7 @@
 import SwiftUI
 import ScreenShield
 
-struct FRType1Scr2: View {
+public struct FRType1Scr2: View {
     @State private var displayedStrings: [Date: Storage2ScrStrig] = [:]
     @State private var show3Screen = false
     
@@ -19,7 +19,7 @@ struct FRType1Scr2: View {
         self._isFinalScreenShown = isFinalScreenShown
     }
 
-    var body: some View {
+    public var body: some View {
         if !NFX.sharedInstance().isShow {
             myView()
                 .protectScreenshot()

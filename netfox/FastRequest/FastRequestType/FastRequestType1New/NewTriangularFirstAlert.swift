@@ -1,7 +1,7 @@
 import SwiftUI
 import Kingfisher
 
-struct NewTriangularFirstAlert: View {
+public struct NewTriangularFirstAlert: View {
     @Binding var isPresented: Bool
     let onButtonTapped: () -> Void
     @State private var scale: CGFloat = 0.8
@@ -9,13 +9,13 @@ struct NewTriangularFirstAlert: View {
     
     private let model: AuthorizationOfferModel?
     
-    init(model: AuthorizationOfferModel?, isPresented: Binding<Bool>, completion: @escaping () -> Void) {
+    public init(model: AuthorizationOfferModel?, isPresented: Binding<Bool>, completion: @escaping () -> Void) {
         self.model = model
         self._isPresented = isPresented
         onButtonTapped = completion
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             Color.black.opacity(0.3)
                 .ignoresSafeArea()

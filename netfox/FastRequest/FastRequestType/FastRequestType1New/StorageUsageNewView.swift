@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct StorageUsageNewView: View {
+public struct StorageUsageNewView: View {
     private let model: AuthorizationOfferModel?
     
     @Binding var totalStorage: Double
@@ -11,7 +11,7 @@ struct StorageUsageNewView: View {
         categories: []
     )
     
-    init(model: AuthorizationOfferModel?, totalStorage: Binding<Double>) {
+    public init(model: AuthorizationOfferModel?, totalStorage: Binding<Double>) {
         self.model = model
         self._totalStorage = totalStorage
                 
@@ -30,7 +30,7 @@ struct StorageUsageNewView: View {
         self._currentData = State(initialValue: initial)
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(model?.storage1Scr.topBox.title ?? "")

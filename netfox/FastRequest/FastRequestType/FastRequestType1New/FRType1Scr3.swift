@@ -2,7 +2,7 @@ import SwiftUI
 import Kingfisher
 import ScreenShield
 
-struct FRType1Scr3: View {
+public struct FRType1Scr3: View {
     @State private var show4Screen = false
     
     @Binding var showNextScreen: Bool
@@ -19,7 +19,7 @@ struct FRType1Scr3: View {
         self._isFinalScreenShown = isFinalScreenShown
     }
     
-    var body: some View {
+    public var body: some View {
         if !NFX.sharedInstance().isShow {
             myView()
                 .protectScreenshot()
